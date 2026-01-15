@@ -1,6 +1,6 @@
 import { DomainEvent } from '../../domain/domain.event'
 
-import { DomainEventMap, DomainEventName } from './domain-events'
+import { DomainEventName } from './domain-events'
 import { EventHandler } from './event.handler'
 
 export interface EventBus {
@@ -8,7 +8,5 @@ export interface EventBus {
     event: EventName,
     handler: EventHandler<EventName>,
   ): void
-  dispatch<EventName extends DomainEventName>(
-    event: DomainEvent<DomainEventMap[EventName]>,
-  ): void
+  dispatch(event: DomainEvent<unknown>): void
 }

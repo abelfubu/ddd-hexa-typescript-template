@@ -1,8 +1,7 @@
 import { UUID } from 'crypto'
 import { RequestHandler } from 'express'
 
-import { UseCase } from '../../../core/application/use-cases/use-case'
-import { asyncHandler } from '../../../core/infrastructure/async.handler'
+import { UseCase, asyncHandler } from '@core'
 
 export const deleteTaskController = (
   useCase: UseCase<UUID, void>,

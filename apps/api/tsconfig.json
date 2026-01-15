@@ -1,6 +1,7 @@
 {
-	"strict": true,
 	"compilerOptions": {
+		"strict": true,
+		"target": "ESNext",
 		"esModuleInterop": true,
 		"paths": {
 			"@core": [

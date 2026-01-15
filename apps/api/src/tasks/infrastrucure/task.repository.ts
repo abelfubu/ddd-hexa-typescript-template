@@ -1,5 +1,7 @@
 import { UUID } from 'crypto'
-import { db } from '../../core/infrastructure/db/db'
+
+import { db } from '@core'
+
 import { TaskRepositoryPort } from '../application/task.repository.port'
 import { Task } from '../domain/task.entity'
 
@@ -13,7 +15,7 @@ export const TaskRepository: TaskRepositoryPort = {
   },
 
   save: async (task: Task): Promise<Task> => {
-    await db('tasks').insert(task.toObject(), '*')
+    await db('tasks').insert(task, '*')
     return task
   },
 

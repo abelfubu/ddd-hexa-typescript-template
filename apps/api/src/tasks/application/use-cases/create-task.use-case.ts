@@ -1,5 +1,5 @@
-import { EventBus } from '../../../core/application/events/event.bus'
-import { UseCase } from '../../../core/application/use-cases/use-case'
+import { EventBus, UseCase } from '@core'
+
 import { Task } from '../../domain/task.entity'
 import { TaskRepositoryPort } from '../task.repository.port'
 
@@ -13,7 +13,7 @@ export const CreateTaskUseCase = (
     const task = Task.create(request.title, request.description ?? '', false)
     const newTask = await repository.save(task)
 
-    newTask.domainEvents.forEach((event) => eventBus.dispatch(event))
+    newTask.getDomainEvents().forEach((event) => eventBus.dispatch(event))
     newTask.clearDomainEvents()
 
     return newTask

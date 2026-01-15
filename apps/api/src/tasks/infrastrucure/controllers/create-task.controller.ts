@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express'
 
-import { UseCase } from '../../../core/application/use-cases/use-case'
-import { asyncHandler } from '../../../core/infrastructure/async.handler'
+import { UseCase, asyncHandler } from '@core'
+
 import { Task } from '../../domain/task.entity'
 
 interface CreateTaskRequest {
@@ -14,6 +14,6 @@ export const createTaskController = (
 ): RequestHandler => {
   return asyncHandler(async (req, res) => {
     const task = await useCase.execute(req.body)
-    return res.status(201).json(task.toObject())
+    return res.status(201).json(task)
   })
 }

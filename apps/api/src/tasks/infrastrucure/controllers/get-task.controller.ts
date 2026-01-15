@@ -1,7 +1,6 @@
 import { RequestHandler } from 'express'
 
-import { UseCase } from '../../../core/application/use-cases/use-case'
-import { asyncHandler } from '../../../core/infrastructure/async.handler'
+import { UseCase, asyncHandler } from '@core'
 import { Task } from '../../domain/task.entity'
 
 export const getTasksController = (
