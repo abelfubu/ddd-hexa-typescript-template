@@ -1,0 +1,17 @@
+{
+	"strict": true,
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"paths": {
+			"@core": [
+				"./src/core/index.ts"
+			],
+			"@api": [
+				"./src/api/index.ts"
+			],
+			"@tasks": [
+				"./src/tasks/index.ts"
+			]
+		}
+	}
+}

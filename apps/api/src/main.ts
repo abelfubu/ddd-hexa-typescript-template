@@ -1,12 +1,11 @@
-import express, { json } from 'express'
-import { EventHandler } from './core/application/events/event.handler'
-import { createInMemoryEventBus } from './core/infrastructure/events/in-memory-event.bus'
-import { globalErrorHandler } from './core/infrastructure/global-error.handler'
-import { buildTaskRoutes } from './tasks/infrastrucure/task.routes'
+import { json } from 'express'
 
-const app = express()
+import { createApplication } from '@api'
+import { createInMemoryEventBus, EventHandler, globalErrorHandler } from '@core'
+
+import { buildTaskRoutes } from '@tasks'
+
 const eventBus = createInMemoryEventBus()
-
 // Example event handler registration
 // This should be registered in the email send domain module
 const SendEmailWhenTaskCreatedEvent: EventHandler<'task.created'> = {
@@ -15,16 +14,16 @@ const SendEmailWhenTaskCreatedEvent: EventHandler<'task.created'> = {
   },
 }
 eventBus.register('task.created', SendEmailWhenTaskCreatedEvent)
-app.use(json())
 
-app.get('/ping', (_req, res) => {
-  res.status(200).json({ message: 'pong!' })
+createApplication({
+  port: 3000,
+  middleware: { preRoutes: [json()], postRoutes: [globalErrorHandler] },
+  routes: {
+    '/api/tasks': buildTaskRoutes(eventBus),
+  },
 })
 
-app.use('/api/tasks', buildTaskRoutes(eventBus))
-
-app.use(globalErrorHandler)
-
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000')
+process.on('SIGINT', () => {
+  console.log('Shutting down server...')
+  process.exit()
 })
