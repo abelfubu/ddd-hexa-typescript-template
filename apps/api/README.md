@@ -7,14 +7,18 @@ This service implements a Domain-Driven Design (DDD) template that combines slic
 ```
 apps/api
 ├── src/
+│   ├── api/                # Shared abstractions for all slices
+│   │   ├── express/        # Express-specific initialization
 │   ├── core/               # Shared abstractions for all slices
 │   │   ├── domain/         # Base domain primitives (AggregateRoot, DomainEvent)
 │   │   ├── application/    # Cross-slice contracts (UseCase, EventBus)
-│   │   └── infrastructure/ # Generic adapters (event bus, DB, error handling)
+│   │   └── infrastructure/ # Generic adapters (event bus, DB, error handling, validation)
 │   ├── tasks/              # Example slice (feature module)
 │   │   ├── domain/         # Task aggregate, errors, domain events
+│   │   │   ├── it/         # Split per country (only if necessary)
+│   │   │   ├── es/
 │   │   ├── application/    # Use cases + slice-specific ports
-│   │   │   ├── it/         # Split per country (only if necessary) could apply to other layers like domain
+│   │   │   ├── it/         
 │   │   │   ├── es/
 │   │   └── infrastrucure/  # Express controllers + persistence adapters
 │   ├── users/              # Example slice (feature module)
