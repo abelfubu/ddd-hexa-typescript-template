@@ -1,11 +1,16 @@
 import { UUID } from 'crypto'
 import { RequestHandler } from 'express'
+import z from 'zod'
 
 import { UseCase, asyncHandler } from '@core'
 
+export const ToggleTasksParamsSchema = z.object({
+  id: z.uuid().transform((v) => v as UUID),
+})
+
 export const toggleTasksController = (
   useCase: UseCase<UUID, void>,
-): RequestHandler => {
+): RequestHandler<z.infer<typeof ToggleTasksParamsSchema>> => {
   return asyncHandler(async (req, res) => {
     useCase.execute(req.params.id as UUID)
     return res.status(204).send()

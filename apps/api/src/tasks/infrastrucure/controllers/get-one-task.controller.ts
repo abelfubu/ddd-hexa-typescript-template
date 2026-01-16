@@ -1,15 +1,20 @@
 import { UUID } from 'crypto'
 import { RequestHandler } from 'express'
+import z from 'zod'
 
 import { UseCase, asyncHandler } from '@core'
 
 import { Task } from '../../domain/task.entity'
 
+export const GetOneTaskParamsSchema = z.object({
+  id: z.uuid().transform((v) => v as UUID),
+})
+
 export const getOneTaskController = (
   useCase: UseCase<UUID, Task | null>,
-): RequestHandler => {
+): RequestHandler<z.infer<typeof GetOneTaskParamsSchema>> => {
   return asyncHandler(async (req, res) => {
-    const task = await useCase.execute(req.params.id as UUID)
+    const task = await useCase.execute(req.params.id)
 
     if (!task) {
       return res.status(404).json({ message: 'Task not found' })

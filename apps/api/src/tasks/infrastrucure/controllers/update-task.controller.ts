@@ -1,7 +1,18 @@
 import { UUID } from 'crypto'
 import { RequestHandler } from 'express'
+import z from 'zod'
 
 import { UseCase, asyncHandler } from '@core'
+
+export const UpdateTaskParamsSchema = z.object({
+  id: z.uuid().transform((v) => v as UUID),
+})
+
+export const UpdateTaskBodySchema = z.object({
+  title: z.string().min(1).max(255),
+  description: z.string().max(1000).optional(),
+  completed: z.boolean(),
+})
 
 interface UpdateTaskRequest {
   id: UUID
@@ -14,7 +25,11 @@ interface UpdateTaskRequest {
 
 export const updateTaskController = (
   useCase: UseCase<UpdateTaskRequest, void>,
-): RequestHandler => {
+): RequestHandler<
+  z.infer<typeof UpdateTaskParamsSchema>,
+  NonNullable<unknown>,
+  z.infer<typeof UpdateTaskBodySchema>
+> => {
   return asyncHandler(async (req, res) => {
     await useCase.execute({
       id: req.params.id as UUID,
