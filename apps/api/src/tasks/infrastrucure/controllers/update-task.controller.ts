@@ -16,7 +16,11 @@ export const updateTaskController = (
   useCase: UseCase<UpdateTaskRequest, void>,
 ): RequestHandler => {
   return asyncHandler(async (req, res) => {
-    await useCase.execute(req.body)
+    await useCase.execute({
+      id: req.params.id as UUID,
+      task: req.body,
+    })
+
     return res.status(204).send()
   })
 }

@@ -5,6 +5,11 @@ GET http://localhost:3000/api/tasks HTTP/1.1
 
 ### 
 
+GET http://localhost:3000/api/tasks/e2d33cf3-aa46-4af1-9be0-fc263fc4b6d5 HTTP/1.1
+
+
+### 
+
 POST http://localhost:3000/api/tasks HTTP/1.1
 Content-Type: application/json
 
@@ -12,3 +17,8 @@ Content-Type: application/json
   "description": "This is a new task created via HTTP request.",
   "title": "Feed my cat"
 }
+
+
+### 
+
+DELETE http://localhost:3000/api/tasks/c6947cda-ce52-4afd-a57c-8579b6ce60f8 HTTP/1.1

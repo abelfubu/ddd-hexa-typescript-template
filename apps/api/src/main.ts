@@ -1,3 +1,4 @@
+import cors from 'cors'
 import { json } from 'express'
 
 import { createApplication } from '@api'
@@ -15,9 +16,13 @@ const SendEmailWhenTaskCreatedEvent: EventHandler<'task.created'> = {
 }
 eventBus.register('task.created', SendEmailWhenTaskCreatedEvent)
 
+const port = process.env.PORT ? Number(process.env.PORT) : 3000
 createApplication({
-  port: 3000,
-  middleware: { preRoutes: [json()], postRoutes: [globalErrorHandler] },
+  middleware: {
+    preRoutes: [json(), cors()],
+    postRoutes: [globalErrorHandler],
+  },
+  port,
   routes: {
     '/api/tasks': buildTaskRoutes(eventBus),
   },

@@ -1,7 +1,9 @@
 {
 	"compilerOptions": {
-		"strict": true,
 		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"strict": true,
 		"esModuleInterop": true,
 		"paths": {
 			"@core": [

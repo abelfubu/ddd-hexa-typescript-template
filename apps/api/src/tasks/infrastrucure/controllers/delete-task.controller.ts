@@ -7,7 +7,7 @@ export const deleteTaskController = (
   useCase: UseCase<UUID, void>,
 ): RequestHandler => {
   return asyncHandler(async (req, res) => {
-    await useCase.execute(req.body)
+    await useCase.execute(req.params.id as UUID)
     return res.status(200).send()
   })
 }
