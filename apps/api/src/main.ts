@@ -4,16 +4,14 @@ import { json } from 'express'
 
 import { createApplication } from '@api'
 import {
-    createInMemoryEventBus,
-    EventHandler,
-    globalErrorHandler,
-    JwtHandler,
+  createInMemoryEventBus,
+  EventHandler,
+  globalErrorHandler,
+  JwtHandler,
+  logger,
 } from '@core'
-
 import { authMiddleware, buildAuthRoutes } from '@auth'
 import { buildTaskRoutes } from '@tasks'
-import pino from 'pino'
-import pinoHttp from 'pino-http'
 
 const eventBus = createInMemoryEventBus()
 // Example event handler registration
@@ -28,12 +26,7 @@ eventBus.register('task.created', SendEmailWhenTaskCreatedEvent)
 const port = process.env.PORT ? Number(process.env.PORT) : 3000
 createApplication({
   middleware: {
-    preRoutes: [
-      json(),
-      cors(),
-      cookieParser(),
-      pinoHttp({ logger: pino({ level: 'info' }) }),
-    ],
+    preRoutes: [json(), cors(), cookieParser(), logger()],
     postRoutes: [globalErrorHandler],
   },
   port,
