@@ -5,7 +5,7 @@ GET {{host}}/api/tasks HTTP/1.1
 
 ### @name GET_TASK_BY_ID
 
-GET {{host}}/api/tasks/e2d33cf3-aa46-4af1-9be0-fc263fc4b6d5 HTTP/1.1
+GET {{host}}/api/tasks/783cb33c-7888-4b19-9963-dbcac0760b89 HTTP/1.1
 
 
 ### @name CREATE_TASK
@@ -21,4 +21,4 @@ Content-Type: application/json
 
 ### @name DELETE_TASK
 
-DELETE {{host}}/api/tasks/775cb7e7-0145-4e16-a03d-ddd5e5bf9f0f HTTP/1.1
+DELETE {{host}}/api/tasks/783cb33c-7888-4b19-9963-dbcac0760b89 HTTP/1.1
