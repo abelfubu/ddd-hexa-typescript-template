@@ -1,15 +1,27 @@
+import { DomainError } from '@core'
 import { ErrorRequestHandler } from 'express'
+import { AppError } from '../../application/errors/app.error'
 
-export const globalErrorHandler: ErrorRequestHandler = (
-  err,
-  _req,
-  res,
-  _next,
-) => {
-  if (process.env.NODE_ENV !== 'production') {
-    // console.error(err)
-    return res.status(500).json({ message: err.message })
+export const globalErrorHandler: ErrorRequestHandler<
+  NonNullable<unknown>,
+  AppError
+> = (err, _req, res, _next) => {
+  if (DomainError.isDomainError(err)) {
+    const error = AppError.BadRequest({
+      message: err.message,
+      code: err.code,
+      details: err.details,
+    })
+    return res.status(error.status).json(error)
   }
 
-  res.status(500).json({ message: 'Internal Server Error' })
+  if (AppError.isAppError(err)) {
+    return res.status(err.status).json(err)
+  }
+
+  return res.status(500).json(
+    AppError.InternalServerError({
+      details: err?.message ? [err.message] : [],
+    }),
+  )
 }

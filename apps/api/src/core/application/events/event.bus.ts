@@ -1,10 +1,10 @@
 import { DomainEvent } from '../../domain/domain.event'
 
-import { DomainEventName } from './domain-events'
+import { DomainEventKey } from './domain-events'
 import { EventHandler } from './event.handler'
 
 export interface EventBus {
-  register<EventName extends DomainEventName>(
+  register<EventName extends DomainEventKey>(
     event: EventName,
     handler: EventHandler<EventName>,
   ): void

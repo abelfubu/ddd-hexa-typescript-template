@@ -5,7 +5,7 @@ GET {{host}}/api/tasks HTTP/1.1
 
 ### @name GET_TASK_BY_ID
 
-GET {{host}}/api/tasks/{{GET_TASKS.response.body.0.id}} HTTP/1.1
+GET {{host}}/api/tasks/e2d33cf3-aa46-4af1-9be0-fc263fc4b6d5 HTTP/1.1
 
 
 ### @name CREATE_TASK

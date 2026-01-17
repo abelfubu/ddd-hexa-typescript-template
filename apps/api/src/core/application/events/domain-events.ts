@@ -1,6 +1,6 @@
 export interface DomainEventMap {}
 
-export type DomainEventName = keyof DomainEventMap & string
+export type DomainEventKey = keyof DomainEventMap & string
 
-export type DomainEventPayload<EventName extends DomainEventName> =
+export type DomainEventPayload<EventName extends DomainEventKey> =
   DomainEventMap[EventName]

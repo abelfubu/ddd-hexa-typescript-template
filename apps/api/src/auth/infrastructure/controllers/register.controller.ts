@@ -22,10 +22,6 @@ export const registerController = (
   return asyncHandler(async (req, res) => {
     const user = await useCase.execute(req.body)
 
-    if (!user) {
-      return res.status(401).json({ message: 'Could not register user' })
-    }
-
     return res
       .cookie('session', jwt.sign({ userId: user.id }), {
         httpOnly: true,

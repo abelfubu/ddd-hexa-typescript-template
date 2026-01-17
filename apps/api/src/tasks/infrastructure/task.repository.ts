@@ -1,21 +1,30 @@
 import { UUID } from 'node:crypto'
 
-import { db } from '@core'
+import { db, withPersistenceHandling } from '@core'
 
 import { TaskRepositoryPort } from '../application/task.repository.port'
 import { Task } from '../domain/task.entity'
 
 export const TaskRepository: TaskRepositoryPort = {
   get: (): Promise<Task[]> => {
-    return db('tasks').select('*')
+    return withPersistenceHandling(() => db('tasks').select('*'), {
+      queryName: 'TaskRepository.get',
+      table: 'tasks',
+    })
   },
 
   getOne: (id: UUID): Promise<Task | null> => {
-    return db('tasks').where({ id }).first()
+    return withPersistenceHandling(() => db('tasks').where({ id }).first(), {
+      queryName: 'TaskRepository.getOne',
+      table: 'tasks',
+    })
   },
 
   save: async (task: Task): Promise<Task> => {
-    await db('tasks').insert(task, '*')
+    await withPersistenceHandling(() => db('tasks').insert(task, '*'), {
+      queryName: 'TaskRepository.save',
+      table: 'tasks',
+    })
     return task
   },
 
@@ -23,18 +32,34 @@ export const TaskRepository: TaskRepositoryPort = {
     id: UUID,
     task: Pick<Task, 'title' | 'description' | 'completed'>,
   ): Promise<void> => {
-    await db('tasks').where({ id }).update(task)
+    await withPersistenceHandling(
+      () => db('tasks').where({ id }).update(task),
+      {
+        queryName: 'TaskRepository.update',
+        table: 'tasks',
+      },
+    )
   },
 
   delete: async (id: string): Promise<void> => {
-    await db('tasks').where({ id }).del()
+    await withPersistenceHandling(() => db('tasks').where({ id }).del(), {
+      queryName: 'TaskRepository.delete',
+      table: 'tasks',
+    })
   },
 
   toggleDone: async (id: string): Promise<void> => {
-    await db('tasks')
-      .where({ id })
-      .update({
-        done: db.raw('NOT done'),
-      })
+    await withPersistenceHandling(
+      () =>
+        db('tasks')
+          .where({ id })
+          .update({
+            done: db.raw('NOT done'),
+          }),
+      {
+        queryName: 'TaskRepository.toggleDone',
+        table: 'tasks',
+      },
+    )
   },
 }

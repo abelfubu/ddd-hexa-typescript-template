@@ -3,6 +3,7 @@ import { randomUUID, UUID } from 'node:crypto'
 import z from 'zod'
 
 import { JwtHandlerPort } from '@core'
+import { AppError } from '../../core/application/errors/app.error'
 import { AuthRepository } from './auth.repository'
 
 const CookiesSessionSchema = z.object({
@@ -15,22 +16,20 @@ interface JwtPayload {
 
 export const authMiddleware =
   (jwt: JwtHandlerPort): RequestHandler =>
-  async (req, res, next) => {
+  async (req, _res, next) => {
     const parseResult = CookiesSessionSchema.safeParse(req.cookies)
     if (!parseResult.success) {
-      return res.status(401).json({ message: 'Unauthorized' })
+      return next(AppError.Unauthorized())
     }
 
     const payload = jwt.verify<JwtPayload>(parseResult.data.session)
-
     if (!payload?.userId) {
-      return res.status(401).json({ message: 'Unauthorized' })
+      return next(AppError.Unauthorized())
     }
 
     const user = await AuthRepository.findUserById(payload.userId)
-
     if (!user) {
-      return res.status(401).json({ message: 'Unauthorized' })
+      return next(AppError.Unauthorized())
     }
 
     req.context = {

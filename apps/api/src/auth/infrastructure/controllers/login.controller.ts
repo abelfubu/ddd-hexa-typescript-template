@@ -11,15 +11,11 @@ export const LoginBodySchema = z.object({
 type LoginRequest = z.infer<typeof LoginBodySchema>
 
 export const loginController = (
-  useCase: UseCase<LoginRequest, User | null>,
+  useCase: UseCase<LoginRequest, User>,
   jwt: JwtHandlerPort,
 ): RequestHandler<NonNullable<unknown>, NonNullable<unknown>, LoginRequest> => {
   return asyncHandler(async (req, res) => {
     const user = await useCase.execute(req.body)
-
-    if (!user) {
-      return res.status(401).json({ message: 'Invalid email or password' })
-    }
 
     return res
       .cookie('session', jwt.sign({ userId: user.id }), {

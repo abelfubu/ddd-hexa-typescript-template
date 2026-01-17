@@ -1,4 +1,5 @@
-import { UseCase, User } from '@core'
+import { AppError, UseCase, User } from '@core'
+
 import { AuthRepositoryPort } from '../auth.repository.port'
 import { EncryptorPort } from '../encryptor.port'
 
@@ -10,17 +11,25 @@ interface LoginRequest {
 export const LoginUseCase = (
   repository: AuthRepositoryPort,
   encryptor: EncryptorPort,
-): UseCase<LoginRequest, User | null> => ({
+): UseCase<LoginRequest, User> => ({
   execute: async ({ email, password }) => {
     const user = await repository.findUserByEmail(email)
 
     if (!user) {
-      throw new Error('Invalid credentials')
+      throw AppError.BadRequest({
+        message: 'Invalid credentials',
+        code: 'errors.invalidCredentials',
+        details: ['The provided email does not exist'],
+      })
     }
 
     const validCredentials = await encryptor.compare(password, user.password)
     if (!validCredentials) {
-      throw new Error('Invalid credentials')
+      throw AppError.BadRequest({
+        message: 'Invalid credentials',
+        code: 'errors.invalidCredentials',
+        details: ['Invalid credentials provided'],
+      })
     }
 
     return user

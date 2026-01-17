@@ -15,11 +15,6 @@ export const getOneTaskController = (
 ): RequestHandler<z.infer<typeof GetOneTaskParamsSchema>> => {
   return asyncHandler(async (req, res) => {
     const task = await useCase.execute(req.params.id)
-
-    if (!task) {
-      return res.status(404).json({ message: 'Task not found' })
-    }
-
     return res.status(200).json(task)
   })
 }
