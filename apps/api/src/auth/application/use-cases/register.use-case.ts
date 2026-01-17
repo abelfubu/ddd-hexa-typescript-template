@@ -1,5 +1,6 @@
-import { AppError, UseCase, User } from '@core'
+import { UseCase, User } from '@core'
 
+import { AuthError } from '../auth.error'
 import { AuthRepositoryPort } from '../auth.repository.port'
 import { EncryptorPort } from '../encryptor.port'
 
@@ -16,13 +17,7 @@ export const RegisterUseCase = (
   execute: async ({ email, username, password }) => {
     const existingUser = await repository.findUserByEmail(email)
     if (existingUser) {
-      throw AppError.BadRequest({
-        message: 'Email already in use',
-        code: 'errors.emailInUse',
-        details: [
-          'Provide a different email, the email provided is already in use',
-        ],
-      })
+      throw AuthError.EmailAlreadyInUse()
     }
 
     const hashedPassword = await encryptor.hash(password)

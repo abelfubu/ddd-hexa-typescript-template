@@ -11,7 +11,7 @@ export function validateQuery<T>(
   T
 > {
   return async (req, _res, next) => {
-    const validationResult = schema['~standard'].validate(req.params)
+    const validationResult = schema['~standard'].validate(req.query)
 
     const result =
       validationResult instanceof Promise

@@ -1,8 +1,9 @@
 import { UUID } from 'node:crypto'
 
-import { AppError, UseCase } from '@core'
+import { UseCase } from '@core'
 
 import { Task } from '../../domain/task.entity'
+import { TaskAppError } from '../task.app-error'
 import { TaskRepositoryPort } from '../task.repository.port'
 
 export const UpdateTaskUseCase = (
@@ -14,11 +15,7 @@ export const UpdateTaskUseCase = (
   execute: async ({ id, task }) => {
     const found = await repository.getOne(id)
     if (!found) {
-      throw AppError.NotFound({
-        message: 'Task not found',
-        code: 'errors.task.notFound',
-        details: [`Task with id ${id} does not exist`],
-      })
+      throw TaskAppError.NotFound(id)
     }
 
     const updatedTask = await repository.update(id, task)

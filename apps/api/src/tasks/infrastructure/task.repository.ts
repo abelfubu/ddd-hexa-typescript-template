@@ -54,7 +54,7 @@ export const TaskRepository: TaskRepositoryPort = {
         db('tasks')
           .where({ id })
           .update({
-            done: db.raw('NOT done'),
+            completed: db.raw('NOT completed'),
           }),
       {
         queryName: 'TaskRepository.toggleDone',
