@@ -7,8 +7,8 @@ export const globalErrorHandler: ErrorRequestHandler = (
   _next,
 ) => {
   if (process.env.NODE_ENV !== 'production') {
-    console.error(err)
-    res.status(500).json({ message: err.message })
+    // console.error(err)
+    return res.status(500).json({ message: err.message })
   }
 
   res.status(500).json({ message: 'Internal Server Error' })

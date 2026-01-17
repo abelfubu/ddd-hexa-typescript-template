@@ -1,4 +1,4 @@
-import { UUID, randomUUID } from 'crypto'
+import { UUID, randomUUID } from 'node:crypto'
 
 import { AggregateRoot } from '../../core/domain/aggregate-root.entity'
 import { createTaskCreatedEvent } from './events/task-created.event'
@@ -9,17 +9,22 @@ export class Task extends AggregateRoot<UUID> {
     readonly title: string,
     readonly description: string,
     readonly completed: boolean,
-    readonly userId = '8a906d8b-8499-4260-965d-6b27e4ede2a8',
+    readonly userId: UUID,
   ) {
     super(randomUUID())
   }
 
-  static create(title: string, description: string, completed: boolean): Task {
+  static create(
+    title: string,
+    description: string,
+    completed: boolean,
+    userId: UUID,
+  ): Task {
     if (!title || title.trim().length < 4) {
       throw new Error(TaskErrors.InvalidTitle)
     }
 
-    const task = new Task(title, description ?? '', completed)
+    const task = new Task(title, description ?? '', completed, userId)
 
     task.addDomainEvent(createTaskCreatedEvent(task.id))
 

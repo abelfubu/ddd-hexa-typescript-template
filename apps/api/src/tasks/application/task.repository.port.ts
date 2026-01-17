@@ -1,4 +1,4 @@
-import { UUID } from 'crypto'
+import { UUID } from 'node:crypto'
 import { Task } from '../domain/task.entity'
 
 export interface TaskRepositoryPort {

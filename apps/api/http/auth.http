@@ -1,0 +1,21 @@
+### 
+
+POST {{host}}/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "patata@fubu.com",
+  "password": "test1234"
+}
+
+
+### 
+
+POST {{host}}/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "patata@fubu.com",
+  "password": "test1234",
+  "username": "patata"
+}

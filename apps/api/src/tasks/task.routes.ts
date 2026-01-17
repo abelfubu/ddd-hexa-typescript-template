@@ -1,14 +1,18 @@
-import { Router } from 'express'
+import { RequestHandler, Router } from 'express'
 
 import { validateBody, validateParams } from '@core'
-import { EventBus } from '../../core/application/events/event.bus'
-import * as useCase from '../application/use-cases'
-import * as controller from './controllers'
-import { TaskRepository } from './task.repository'
+import { EventBus } from '../core/application/events/event.bus'
+import * as useCase from './application/use-cases'
+import * as controller from './infrastrucure/controllers'
+import { TaskRepository } from './infrastrucure/task.repository'
 
-export function buildTaskRoutes(eventBus: EventBus) {
+export function buildTaskRoutes(
+  eventBus: EventBus,
+  authMiddleware: RequestHandler,
+) {
   const router = Router()
 
+  router.use(authMiddleware)
   router.get(
     '/',
     controller.getTasksController(useCase.GetTasksUseCase(TaskRepository)),

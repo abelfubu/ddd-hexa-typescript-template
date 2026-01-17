@@ -1,4 +1,4 @@
-import { UUID } from 'crypto'
+import { UUID } from 'node:crypto'
 
 import { UseCase } from '@core'
 
@@ -8,5 +8,7 @@ import { TaskRepositoryPort } from '../task.repository.port'
 export const GetOneTaskUseCase = (
   repository: TaskRepositoryPort,
 ): UseCase<UUID, Task | null> => ({
-  execute: async (request) => repository.getOne(request),
+  execute: async (request) => {
+    return repository.getOne(request)
+  },
 })

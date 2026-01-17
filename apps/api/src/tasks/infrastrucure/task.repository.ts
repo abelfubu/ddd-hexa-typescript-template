@@ -1,4 +1,4 @@
-import { UUID } from 'crypto'
+import { UUID } from 'node:crypto'
 
 import { db } from '@core'
 
@@ -10,7 +10,7 @@ export const TaskRepository: TaskRepositoryPort = {
     return db('tasks').select('*')
   },
 
-  getOne: (id: string): Promise<Task | null> => {
+  getOne: (id: UUID): Promise<Task | null> => {
     return db('tasks').where({ id }).first()
   },
 

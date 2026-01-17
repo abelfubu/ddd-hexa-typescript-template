@@ -1,3 +1,4 @@
+import { UUID } from 'node:crypto'
 import { RequestHandler } from 'express'
 import z from 'zod'
 
@@ -13,6 +14,7 @@ export const CreateTaskBodySchema = z.object({
 interface CreateTaskRequest {
   title: string
   description?: string
+  userId: UUID
 }
 
 export const createTaskController = (
@@ -23,7 +25,10 @@ export const createTaskController = (
   z.infer<typeof CreateTaskBodySchema>
 > => {
   return asyncHandler(async (req, res) => {
-    const task = await useCase.execute(req.body)
+    const task = await useCase.execute({
+      ...req.body,
+      userId: req.context.userId,
+    })
     return res.status(201).json(task)
   })
 }

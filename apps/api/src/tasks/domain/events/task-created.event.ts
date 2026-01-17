@@ -1,4 +1,4 @@
-import { UUID } from 'crypto'
+import { UUID } from 'node:crypto'
 
 import { DomainEventMap } from '../../../core/application/events/domain-events'
 import { DomainEvent } from '../../../core/domain/domain.event'

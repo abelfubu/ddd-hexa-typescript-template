@@ -10,9 +10,9 @@ export function createInMemoryEventBus(): EventBus {
   const handlers = new Map<DomainEventName, EventHandler<DomainEventName>[]>()
 
   return {
-    register<EventName extends DomainEventName>(
-      event: EventName,
-      handler: EventHandler<EventName>,
+    register(
+      event: DomainEventName,
+      handler: EventHandler<DomainEventName>,
     ): void {
       const found = handlers.get(event)
       if (found) {

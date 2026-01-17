@@ -1,1 +1,1 @@
-export * from './infrastrucure/task.routes';
+export * from './task.routes';
