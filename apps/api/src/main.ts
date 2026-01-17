@@ -3,14 +3,14 @@ import cors from 'cors'
 import { json } from 'express'
 
 import { createApplication } from '@api'
-import {
-  createInMemoryEventBus,
-  EventHandler,
-  globalErrorHandler,
-  JwtHandler,
-  logger,
-} from '@core'
 import { authMiddleware, buildAuthRoutes } from '@auth'
+import {
+    createInMemoryEventBus,
+    EventHandler,
+    globalErrorHandler,
+    JwtHandler,
+    logger,
+} from '@core'
 import { buildTaskRoutes } from '@tasks'
 
 const eventBus = createInMemoryEventBus()

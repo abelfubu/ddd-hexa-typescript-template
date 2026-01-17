@@ -1,7 +1,7 @@
-export * from './create-task.controller.ts'
-export * from './delete-task.controller.ts'
-export * from './get-one-task.controller.ts'
-export * from './get-task.controller.ts'
-export * from './toggle-task.controller.ts'
-export * from './update-task.controller.ts'
+export * from './create-task.controller'
+export * from './delete-task.controller'
+export * from './get-one-task.controller'
+export * from './get-task.controller'
+export * from './toggle-task.controller'
+export * from './update-task.controller'
 

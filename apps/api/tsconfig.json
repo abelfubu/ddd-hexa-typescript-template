@@ -5,6 +5,9 @@
 		"moduleResolution": "Bundler",
 		"strict": true,
 		"esModuleInterop": true,
+		"verbatimModuleSyntax": true,
+		"skipLibCheck": true,
+		"outDir": "./dist",
 		"paths": {
 			"@core": [
 				"./src/core/index.ts"
@@ -19,5 +22,8 @@
 				"./src/tasks/index.ts"
 			]
 		}
-	}
+	},
+	"exclude": [
+		"node_modules"
+	]
 }
