@@ -15,7 +15,7 @@ export function validateBody<T>(
     if (result.issues) {
       return res.status(400).json({
         ok: false,
-        errors: result.issues.map((issue) => issue.message),
+        errors: result.issues,
       })
     }
 
