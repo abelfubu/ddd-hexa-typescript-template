@@ -17,4 +17,4 @@ export * from './infrastructure/handlers/validate-params.handler'
 export * from './infrastructure/handlers/validate-query.handler'
 export * from './infrastructure/jwt.handler'
 export * from './infrastructure/logger/logger'
-
+export * from './domain/domain.event'

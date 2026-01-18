@@ -1,7 +1,7 @@
-import { RequestHandler } from 'express'
+import { type RequestHandler } from 'express'
 import z from 'zod'
 
-import { asyncHandler, JwtHandlerPort, UseCase, User } from '@core'
+import { asyncHandler, type JwtHandlerPort, type UseCase, User } from '@core'
 
 export const RegisterBodySchema = z.object({
   username: z.string().min(3),

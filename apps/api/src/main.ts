@@ -5,11 +5,11 @@ import { json } from 'express'
 import { createApplication } from '@api'
 import { authMiddleware, buildAuthRoutes } from '@auth'
 import {
-    createInMemoryEventBus,
-    EventHandler,
-    globalErrorHandler,
-    JwtHandler,
-    logger,
+  createInMemoryEventBus,
+  type EventHandler,
+  globalErrorHandler,
+  JwtHandler,
+  logger,
 } from '@core'
 import { buildTaskRoutes } from '@tasks'
 

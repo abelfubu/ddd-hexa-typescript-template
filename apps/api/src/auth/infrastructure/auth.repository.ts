@@ -1,7 +1,7 @@
-import { UUID } from 'node:crypto'
+import { type UUID } from 'node:crypto'
 
 import { db, User, withPersistenceHandling } from '@core'
-import { AuthRepositoryPort } from '../application/auth.repository.port'
+import { type AuthRepositoryPort } from '../application/auth.repository.port'
 
 export const AuthRepository: AuthRepositoryPort = {
   findUserByEmail: (email: string): Promise<User | null> => {

@@ -1,6 +1,6 @@
 import { AppError } from '@core'
 import type { StandardSchemaV1 } from '@standard-schema/spec'
-import { RequestHandler } from 'express'
+import { type RequestHandler } from 'express'
 
 export function validateBody<T>(
   schema: StandardSchemaV1<T>,

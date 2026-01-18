@@ -1,5 +1,5 @@
 import { AppError } from '@core'
-import { UUID } from 'node:crypto'
+import { type UUID } from 'node:crypto'
 
 export const TaskAppError = {
   NotFound: (id: UUID) =>

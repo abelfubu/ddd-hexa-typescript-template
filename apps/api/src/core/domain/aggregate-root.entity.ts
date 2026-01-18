@@ -1,4 +1,4 @@
-import { DomainEvent } from './domain.event'
+import { type DomainEvent } from './domain.event'
 
 export class AggregateRoot<T> {
   #domainEvents: DomainEvent<unknown>[] = []

@@ -1,8 +1,8 @@
-import { RequestHandler } from 'express'
-import { randomUUID, UUID } from 'node:crypto'
+import { type RequestHandler } from 'express'
+import { randomUUID, type UUID } from 'node:crypto'
 import z from 'zod'
 
-import { JwtHandlerPort } from '@core'
+import { type JwtHandlerPort } from '@core'
 import { AppError } from '../../core/application/errors/app.error'
 import { AuthRepository } from './auth.repository'
 

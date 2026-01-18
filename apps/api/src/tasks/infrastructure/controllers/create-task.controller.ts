@@ -1,8 +1,8 @@
-import { UUID } from 'node:crypto'
-import { RequestHandler } from 'express'
+import { type RequestHandler } from 'express'
+import { type UUID } from 'node:crypto'
 import z from 'zod'
 
-import { UseCase, asyncHandler } from '@core'
+import { type UseCase, asyncHandler } from '@core'
 
 import { Task } from '../../domain/task.entity'
 

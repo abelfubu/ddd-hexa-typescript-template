@@ -1,7 +1,7 @@
-import { DomainEvent } from '../../domain/domain.event'
+import { type DomainEvent } from '../../domain/domain.event'
 
-import { DomainEventKey } from './domain-events'
-import { EventHandler } from './event.handler'
+import { type DomainEventKey } from './domain-events'
+import { type EventHandler } from './event.handler'
 
 export interface EventBus {
   register<EventName extends DomainEventKey>(

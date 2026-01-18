@@ -1,6 +1,6 @@
-import { DomainEvent } from '../../domain/domain.event'
+import { type DomainEvent } from '../../domain/domain.event'
 
-import { DomainEventKey, DomainEventMap } from './domain-events'
+import { type DomainEventKey, type DomainEventMap } from './domain-events'
 
 export interface EventHandler<EventName extends DomainEventKey> {
   readonly handle: (

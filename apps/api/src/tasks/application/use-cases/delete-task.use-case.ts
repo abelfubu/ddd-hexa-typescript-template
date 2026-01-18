@@ -1,8 +1,8 @@
-import { UUID } from 'node:crypto'
+import { type UUID } from 'node:crypto'
 
-import { UseCase } from '@core'
+import { type UseCase } from '@core'
 
-import { TaskRepositoryPort } from '../task.repository.port'
+import { type TaskRepositoryPort } from '../task.repository.port'
 
 export const DeleteTaskUseCase = (
   repository: TaskRepositoryPort,

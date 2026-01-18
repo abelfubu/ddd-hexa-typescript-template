@@ -1,5 +1,5 @@
 import { DomainError } from '@core'
-import { ErrorRequestHandler } from 'express'
+import { type ErrorRequestHandler } from 'express'
 import { AppError } from '../../application/errors/app.error'
 
 export const globalErrorHandler: ErrorRequestHandler<

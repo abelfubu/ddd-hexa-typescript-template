@@ -1,8 +1,8 @@
-import { RequestHandler } from 'express'
-import { UUID } from 'node:crypto'
+import { type RequestHandler } from 'express'
+import { type UUID } from 'node:crypto'
 import z from 'zod'
 
-import { UseCase, asyncHandler } from '@core'
+import { type UseCase, asyncHandler } from '@core'
 
 export const UpdateTaskParamsSchema = z.object({
   id: z.uuid().transform((v) => v as UUID),

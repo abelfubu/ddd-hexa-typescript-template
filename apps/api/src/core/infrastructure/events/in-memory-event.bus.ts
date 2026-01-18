@@ -1,11 +1,11 @@
 import { AppError } from '../../application/errors/app.error'
 import {
-    DomainEventKey,
-    DomainEventMap,
+  type DomainEventKey,
+  type DomainEventMap,
 } from '../../application/events/domain-events'
-import { EventBus } from '../../application/events/event.bus'
-import { EventHandler } from '../../application/events/event.handler'
-import { DomainEvent } from '../../domain/domain.event'
+import { type EventBus } from '../../application/events/event.bus'
+import { type EventHandler } from '../../application/events/event.handler'
+import { type DomainEvent } from '../../domain/domain.event'
 
 export function createInMemoryEventBus(): EventBus {
   const handlers = new Map<DomainEventKey, EventHandler<DomainEventKey>[]>()

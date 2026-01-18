@@ -1,10 +1,10 @@
-import { UUID } from 'node:crypto'
+import { type UUID } from 'node:crypto'
 
-import { UseCase } from '@core'
+import { type UseCase } from '@core'
 
 import { Task } from '../../domain/task.entity'
 import { TaskAppError } from '../task.app-error'
-import { TaskRepositoryPort } from '../task.repository.port'
+import { type TaskRepositoryPort } from '../task.repository.port'
 
 export const GetOneTaskUseCase = (
   repository: TaskRepositoryPort,

@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { JwtHandlerPort } from '../application/jwt.handler.port'
+import { type JwtHandlerPort } from '../application/jwt.handler.port'
 
 export const JwtHandler: JwtHandlerPort = {
   sign: <T extends object>(payload: T) => {

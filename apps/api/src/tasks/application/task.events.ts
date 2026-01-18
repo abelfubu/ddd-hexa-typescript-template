@@ -1,4 +1,4 @@
-import { UUID } from 'node:crypto'
+import { type UUID } from 'node:crypto'
 
 declare module '../../core/application/events/domain-events' {
   interface DomainEventMap {
@@ -6,4 +6,4 @@ declare module '../../core/application/events/domain-events' {
   }
 }
 
-export { }
+export {}

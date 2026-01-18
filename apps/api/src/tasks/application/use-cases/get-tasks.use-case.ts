@@ -1,8 +1,8 @@
-import { UseCase } from '@core'
+import { type UseCase } from '@core'
 
 import { Task } from '../../domain/task.entity'
 
-import { TaskRepositoryPort } from '../task.repository.port'
+import { type TaskRepositoryPort } from '../task.repository.port'
 
 export const GetTasksUseCase = (
   repository: TaskRepositoryPort,

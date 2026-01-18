@@ -1,4 +1,8 @@
-import express, { ErrorRequestHandler, RequestHandler, Router } from 'express'
+import express, {
+    type ErrorRequestHandler,
+    type RequestHandler,
+    Router,
+} from 'express'
 import { IncomingMessage, Server, ServerResponse } from 'node:http'
 
 export function createApplication({

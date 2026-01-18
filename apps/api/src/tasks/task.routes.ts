@@ -1,7 +1,7 @@
-import { RequestHandler, Router } from 'express'
+import { type RequestHandler, Router } from 'express'
 
 import { validateBody, validateParams } from '@core'
-import { EventBus } from '../core/application/events/event.bus'
+import { type EventBus } from '../core/application/events/event.bus'
 import * as useCase from './application/use-cases'
 import * as controller from './infrastructure/controllers'
 import { TaskRepository } from './infrastructure/task.repository'

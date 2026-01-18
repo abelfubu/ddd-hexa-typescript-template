@@ -1,8 +1,8 @@
-import { UseCase, User } from '@core'
+import { type UseCase, User } from '@core'
 
 import { AuthError } from '../auth.error'
-import { AuthRepositoryPort } from '../auth.repository.port'
-import { EncryptorPort } from '../encryptor.port'
+import { type AuthRepositoryPort } from '../auth.repository.port'
+import { type EncryptorPort } from '../encryptor.port'
 
 interface LoginRequest {
   email: string

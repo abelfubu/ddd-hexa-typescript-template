@@ -1,5 +1,5 @@
 import { compare, hash } from 'bcryptjs'
-import { EncryptorPort } from '../application/encryptor.port'
+import { type EncryptorPort } from '../application/encryptor.port'
 
 export const Encryptor: EncryptorPort = {
   hash: (plainText) => {

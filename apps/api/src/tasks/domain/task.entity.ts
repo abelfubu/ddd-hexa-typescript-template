@@ -1,4 +1,4 @@
-import { UUID, randomUUID } from 'node:crypto'
+import { type UUID, randomUUID } from 'node:crypto'
 
 import { AggregateRoot } from '@core'
 import { createTaskCreatedEvent } from './events/task-created.event'

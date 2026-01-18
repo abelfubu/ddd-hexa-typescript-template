@@ -1,4 +1,4 @@
-import { randomUUID, UUID } from 'node:crypto'
+import { randomUUID, type UUID } from 'node:crypto'
 import { AggregateRoot } from '../aggregate-root.entity'
 import { UserError } from './user.errors'
 

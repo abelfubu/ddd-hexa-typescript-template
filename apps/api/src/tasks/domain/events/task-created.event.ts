@@ -1,6 +1,6 @@
-import { UUID } from 'node:crypto'
+import { type UUID } from 'node:crypto'
 
-import { DomainEvent } from '../../../core/domain/domain.event'
+import { type DomainEvent } from '@core'
 
 export function createTaskCreatedEvent(
   id: UUID,

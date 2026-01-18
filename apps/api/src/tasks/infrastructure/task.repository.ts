@@ -1,8 +1,8 @@
-import { UUID } from 'node:crypto'
+import { type UUID } from 'node:crypto'
 
 import { db, withPersistenceHandling } from '@core'
 
-import { TaskRepositoryPort } from '../application/task.repository.port'
+import { type TaskRepositoryPort } from '../application/task.repository.port'
 import { Task } from '../domain/task.entity'
 
 export const TaskRepository: TaskRepositoryPort = {

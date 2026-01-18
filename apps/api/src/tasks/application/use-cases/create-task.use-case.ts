@@ -1,7 +1,7 @@
-import { EventBus, UseCase } from '@core'
+import { type EventBus, type UseCase } from '@core'
 
 import { Task } from '../../domain/task.entity'
-import { TaskRepositoryPort } from '../task.repository.port'
+import { type TaskRepositoryPort } from '../task.repository.port'
 
 type CreateTaskRequest = Pick<Task, 'title' | 'description' | 'userId'>
 
