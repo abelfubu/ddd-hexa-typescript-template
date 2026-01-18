@@ -1,7 +1,3 @@
-import cookieParser from 'cookie-parser'
-import cors from 'cors'
-import { json } from 'express'
-
 import { createApplication } from '@api'
 import { authMiddleware, buildAuthRoutes } from '@auth'
 import {
@@ -12,6 +8,9 @@ import {
   logger,
 } from '@core'
 import { buildTaskRoutes } from '@tasks'
+import cookieParser from 'cookie-parser'
+import cors from 'cors'
+import { json } from 'express'
 
 const eventBus = createInMemoryEventBus()
 // Example event handler registration

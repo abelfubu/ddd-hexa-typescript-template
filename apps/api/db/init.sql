@@ -9,7 +9,7 @@ CREATE TABLE users (
 
 CREATE TABLE tasks (
     id uuid PRIMARY KEY NOT NULL,
-    "userId" uuid REFERENCES users (id) ON DELETE CASCADE,
+    "userId" uuid NOT NULL REFERENCES users (id) ON DELETE CASCADE,
     title text NOT NULL,
     description text,
     completed boolean DEFAULT FALSE,
@@ -17,13 +17,13 @@ CREATE TABLE tasks (
     "updatedAt" timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_tasks_userId ON tasks (userId);
+CREATE INDEX idx_tasks_userId ON tasks ("userId");
 
 CREATE INDEX idx_tasks_completed ON tasks (completed);
 
 INSERT INTO users (id, username, email, password)
     VALUES ('11111111-1111-1111-1111-111111111111', 'testuser', 'test@user.com', '$2b$10$4whsaypYEzQNMAFT9aglgefpzCNv96NeFNWgvpVqilPfGBafKmvpi');
 
-INSERT INTO tasks (id, userId, title, description, completed)
+INSERT INTO tasks (id, "userId", title, description, completed)
     VALUES ('22222222-2222-2222-2222-222222222222', '11111111-1111-1111-1111-111111111111', 'Sample Task', 'This is a sample task description.', FALSE);
 
